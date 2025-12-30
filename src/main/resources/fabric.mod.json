@@ -5,7 +5,7 @@
 	"name": "Dungeon Utils",
 	"description": "Sai da dungo e doa- doa não, da 30 milhão",
 	"authors": [
-		"Me!"
+		"FelpsLipe"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
@@ -15,8 +15,8 @@
 	"icon": "assets/dungeon-utils/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"client": [
-			"com.felpslipe.DungeonUtils"
+		"main": [
+			"com.felpslipe.dungeonutils.DungeonUtils"
 		]
 	},
 	"mixins": [
