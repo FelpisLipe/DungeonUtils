@@ -11,7 +11,7 @@
 		"homepage": "https://fabricmc.net/",
 		"sources": "https://github.com/FelpisLipe/DungeonUtils"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/dungeon-utils/icon.png",
 	"environment": "*",
 	"entrypoints": {

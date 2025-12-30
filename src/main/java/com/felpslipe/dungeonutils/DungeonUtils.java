@@ -19,7 +19,7 @@ public class DungeonUtils implements ModInitializer {
 	@Override
 	public void onInitialize() {
         client = MinecraftClient.getInstance();
-        eventBus.registerLambdaFactory("com.felpslipe", (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
+        eventBus.registerLambdaFactory("com.felpslipe.dungeonutils", (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
         eventBus.subscribe(DmitriAnnouncer.class);
         LOGGER.info("[DungeonUtils] Ass");
 	}
