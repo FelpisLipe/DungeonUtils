@@ -15,7 +15,7 @@
 	"icon": "assets/dungeon-utils/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"main": [
+		"client": [
 			"com.felpslipe.dungeonutils.DungeonUtils"
 		]
 	},

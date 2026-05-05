@@ -1,9 +1,9 @@
 package com.felpslipe.dungeonutils.misc;
 
-import net.minecraft.network.packet.s2c.play.PlayerListS2CPacket;
-import net.minecraft.network.packet.s2c.play.TeamS2CPacket;
-import net.minecraft.scoreboard.*;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket;
+import net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket;
+import net.minecraft.world.scores.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +19,8 @@ public class SbData {
         return area;
     }
 
-    public static void updateTablist(PlayerListS2CPacket packet, List<PlayerListS2CPacket.Entry> entries) {
-        for(PlayerListS2CPacket.Entry entry : entries) {
+    public static void updateTablist(ClientboundPlayerInfoUpdatePacket packet, List<ClientboundPlayerInfoUpdatePacket.Entry> entries) {
+        for(ClientboundPlayerInfoUpdatePacket.Entry entry : entries) {
             if (entry.displayName() == null) continue;
             String name = Utils.toPlain(entry.displayName()).trim();
             if(name.startsWith("Area:") || name.startsWith("Dungeon:")) {
@@ -29,16 +29,16 @@ public class SbData {
             }
         }
     }
-    public static void updateScoreboard(TeamS2CPacket packet) {
+    public static void updateScoreboard(ClientboundSetPlayerTeamPacket packet) {
         if(client.player != null) {
             List<String> currentLines = new ArrayList<>();
-            Scoreboard scoreboard = client.player.networkHandler.getScoreboard();
-            ScoreboardObjective objective = scoreboard.getObjectiveForSlot(ScoreboardDisplaySlot.FROM_ID.apply(1));
-            for(ScoreHolder scoreHolder : scoreboard.getKnownScoreHolders()) {
-                if(scoreboard.getScoreHolderObjectives(scoreHolder).containsKey(objective)) {
-                    Team team = scoreboard.getScoreHolderTeam(scoreHolder.getNameForScoreboard());
+            Scoreboard scoreboard = client.player.connection.scoreboard();
+            Objective objective = scoreboard.getDisplayObjective(DisplaySlot.BY_ID.apply(1));
+            for(ScoreHolder scoreHolder : scoreboard.getTrackedPlayers()) {
+                if(scoreboard.listPlayerScores(scoreHolder).containsKey(objective)) {
+                    PlayerTeam team = scoreboard.getPlayersTeam(scoreHolder.getScoreboardName());
                     if (team != null) {
-                        String line = Formatting.strip(team.getPrefix().getString() + team.getSuffix().getString()).trim();
+                        String line = ChatFormatting.stripFormatting(team.getPlayerPrefix().getString() + team.getPlayerSuffix().getString()).trim();
                         if(!line.isEmpty() && (line.startsWith("⏣") || line.startsWith("ф"))) {
                             location = line;
                         }

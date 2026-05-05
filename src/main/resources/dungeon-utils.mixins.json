@@ -3,9 +3,8 @@
 	"package": "com.felpslipe.dungeonutils.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"client": [
-		"ClientConnectionMixin",
-		"ClientPlayNetworkHandlerMixin",
-		"HeldItemRendererMixin"
+		"ConnectionMixin",
+		"ClientPacketListenerMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

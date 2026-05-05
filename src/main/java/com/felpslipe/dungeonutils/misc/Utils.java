@@ -1,13 +1,11 @@
 package com.felpslipe.dungeonutils.misc;
-
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import org.joml.Quaternionf;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 
 public class Utils {
-    public static String toPlain(Text text) {
+    public static String toPlain(Component text) {
         if (text != null) {
-            return Formatting.strip(text.getString());
+            return ChatFormatting.stripFormatting(text.getString());
         }
         return "";
     }
@@ -18,10 +16,5 @@ public class Utils {
 
     public static boolean isInDungeons() {
         return isInArea("Catacombs");
-    }
-    public static Quaternionf getDegreesQuat(double x, double y, double z, float angle) {
-        float radAngle = (float) Math.toRadians(angle);
-        double f = Math.sin(radAngle / 2f);
-        return new Quaternionf(x * f, y * f, z *f, Math.cos(radAngle/2f));
     }
 }
