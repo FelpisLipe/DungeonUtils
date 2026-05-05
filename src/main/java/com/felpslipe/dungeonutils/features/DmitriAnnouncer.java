@@ -12,6 +12,7 @@ public class DmitriAnnouncer {
     @EventHandler
     private static void onMsg(ChatMsgEvent event) {
         if (Utils.isInDungeons() && event.messagePlain.equals(golden)) {
+            assert client.player != null;
             client.player.connection.sendChat("pc Blood is Dmitri!");
         }
     }
